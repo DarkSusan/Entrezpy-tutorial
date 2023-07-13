@@ -1,5 +1,19 @@
 # ENTREZPY TUTORIAL
 
+### Parametry funkcji:
+
+**tool** - Nazwa narzędzia, do którego należy żądanie
+
+**email** - Kompletny i prawidłowy adres e-mail należący do twórcy oprogramowania, a nie użytkownika końcowego będącego osobą trzecią.
+
+**apikey** - NCBI API Key
+
+**apikey_var** - Zmienna środowiskowa przechowująca NCBI API Key
+
+**threads** - liczba wątków
+
+**qid** - Unikalny identyfikator zapytania Esearch. Zostanie wygenerowany, jeśli nie zostanie podany.
+
 ## INQUIRE() - przyjmuje słownik jako parametr
                                	|
 ## ESEARCH
@@ -28,20 +42,6 @@
 |                 	|   **retmode**  	|   _`json, enforced by Esearcher_  	| Określa format pobranych danych np.: XML, text, JSON                                                           	|
 |                 	|   **reqsize**  	|               _int_               	| Określa ilość rekordów żądanych lub przetwarzanych                                                             	|
 |                 	|                	|                                   	|                                                                                                                	|
-
-### Parametry funkcji:
-
-**tool** - Nazwa narzędzia, do którego należy żądanie
-
-**email** - Kompletny i prawidłowy adres e-mail należący do twórcy oprogramowania, a nie użytkownika końcowego będącego osobą trzecią.
-
-**apikey** - NCBI API Key
-
-**apikey_var** - Zmienna środowiskowa przechowująca NCBI API Key
-
-**threads** - liczba wątków
-
-**qid** - Unikalny identyfikator zapytania Esearch. Zostanie wygenerowany, jeśli nie zostanie podany.
 
 
 ```python
