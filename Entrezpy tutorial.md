@@ -1,43 +1,48 @@
 # ENTREZPY TUTORIAL
 
-## Parametry funckji
-
-**apikey** - Ten parametr służy do podania klucza API do uwierzytelniania. Klucz API można uzyskać z usługi bazy danych Entrez i umożliwia on dostęp do niektórych ograniczonych lub uwierzytelnionych funkcji
-
-**apikey_var** - Ten parametr służy do określenia zmiennej środowiskowej zawierającej klucz API.
-
-**threads** - Ten parametr pozwala określić liczbę wątków używanych do wykonywania równoczesnych żądań
-
-**qid** - Ten parametr służy do określania identyfikatora zapytania (QID). QID jest unikalnym identyfikatorem powiązanym z konkretnym zapytaniem lub operacją wyszukiwania.
-
-## INQUIRE()
-###inquire() - przyjmuje słownik jako parametr
-
-**db** - Baza danych do wyszukania (np.: "PubMed", "Protein", "Gene", "Nucleotide")
-
-**term** - Zapytanie do bazy (np. "viruses[orgn]")
-
-**retmax** - Maksymalna liczba pobranych rekordów (np. 110000)
-
-**rettype** - Rodzaj rekordów jaki ma być wyodrębniony z bazy (np. "uilist")
-
-**retmode** - Format wyodrębnionych danych (np.: "xml", "text", "json")
-
-**field** - Konkretne pole do wyszukania w bazie danych
-
-**datetype** - Typ daty do wyszukania (np. "pdat" dla daty publikacji)
-
-**mindate** / **maxdate** - Minimalna/Maksymalna data wyszukania
-
-**sort** - Kolejność sortowania
-
-**id** - Określone ID do pobrania (np. lista identyfikatorów UID)
-
-**reldate** - Względny zakres dat do wyszukania (np. "5 dni" dla ostatnich 5 dni).
-
-**usehistory** - Wartość logiczna wskazująca, czy używać serwera historii Entrez.
-
+## INQUIRE() - przyjmuje słownik jako parametr
+                               	|
 ## ESEARCH
+
+### Wspierane parametry E-Utility
+
+
+| **_Narzędzie_** 	| **_Parametr_** 	|             **_Typ_**             	|                                                   **_Opis_**                                                   	|
+|:---------------:	|:--------------:	|:---------------------------------:	|:--------------------------------------------------------------------------------------------------------------:	|
+| **Esearcher**   	|                	|                                   	|                                                                                                                	|
+|                 	|     **db**     	|               _str_               	| Baza danych do wyszukania (np.: "PubMed", "Protein", "Gene", "Nucleotide")                                     	|
+|                 	|   **WebEnv**   	|               _str_               	| Pozwala na połączenie sesji wyszukiwania, umożliwiając żądaniom na dostęp do historii wyszukiwania czy wyników 	|
+|                 	|  **query_key** 	|               _int_               	| Identyfikuje określone zapytanie w ramach sesji wyszukiwania                                                   	|
+|                 	|   **uilist**   	|               _bool_              	| Zwraca listę unikalnych identyfikatorów (UIDs)                                                                 	|
+|                 	|   **retmax**   	|               _int_               	| Maksymalna liczba pobranych rekordów (np. 110000)                                                              	|
+|                 	|  **retstart**  	|               _int_               	| Określa indeks pierwszego rekordu do pobrania z wyników wyszukiwania                                           	|
+|                 	| **usehistory** 	|               _bool_              	| Użycie serwera historii Entrez.                                                                                	|
+|                 	|    **term**    	|               _str_               	| Zapytanie do bazy (np. "viruses[orgn]")                                                                        	|
+|                 	|    **sort**    	|               _str_               	| Kolejność sortowania                                                                                           	|
+|                 	|    **field**   	|               _str_               	| Zawęża wyszukiwanie do określone pola w bazie danych takich jak: tytuł, autor                                  	|
+|                 	|   **reldate**  	|               _int_               	| Umożliwia wyszukiwanie rekordów we względnym zakresie dat np. ostatnie X dni od dnia dzisiejszego              	|
+|                 	|  **datetype**  	| _str (YYYY/MM/DD, YYYY/MM, YYYY)_ 	| Typ daty do wyszukania (np. "pdat" dla daty publikacji)                                                        	|
+|                 	|   **mindate**  	| _str (YYYY/MM/DD, YYYY/MM, YYYY)_ 	| Minimalna data wyszukania                                                                                      	|
+|                 	|   **maxdate**  	| _str (YYYY/MM/DD, YYYY/MM, YYYY)_ 	| Maksymalna data wyszukania                                                                                     	|
+|                 	|   **idtype**   	|               _bool_              	| Typ identifikatora używany do pobierania danych np. PMID, Genbank Accession                                    	|
+|                 	|   **retmode**  	|   _`json, enforced by Esearcher_  	| Określa format pobranych danych np.: XML, text, JSON                                                           	|
+|                 	|   **reqsize**  	|               _int_               	| Określa ilość rekordów żądanych lub przetwarzanych                                                             	|
+|                 	|                	|                                   	|                                                                                                                	|
+
+### Parametry funkcji:
+
+**tool** - Nazwa narzędzia, do którego należy żądanie
+
+**email** - Kompletny i prawidłowy adres e-mail należący do twórcy oprogramowania, a nie użytkownika końcowego będącego osobą trzecią.
+
+**apikey** - NCBI API Key
+
+**apikey_var** - Zmienna środowiskowa przechowująca NCBI API Key
+
+**threads** - liczba wątków
+
+**qid** - Unikalny identyfikator zapytania Esearch. Zostanie wygenerowany, jeśli nie zostanie podany.
+
 
 ```python
 
@@ -55,6 +60,32 @@ print(a.get_result().uids)
 ```
 
 ## EFETCHER
+
+### Wspierane parametry E-Utility
+
+| **_Narzędzie_** 	| **_Parametr_** 	|             **_Typ_**             	|                                                   **_Opis_**                                                   	|
+|:---------------:	|:--------------:	|:---------------------------------:	|:--------------------------------------------------------------------------------------------------------------:	|
+| **Efetcher**    	|                	|                                   	|                                                                                                                	|
+|                 	|     **db**     	|               _str_               	| Baza danych do wyszukania (np.: "PubMed", "Protein", "Gene", "Nucleotide")                                     	|
+|                 	|   **WebEnv**   	|               _str_               	| Pozwala na połączenie sesji wyszukiwania, umożliwiając żądaniom na dostęp do historii wyszukiwania czy wyników 	|
+|                 	|  **query_key** 	|               _int_               	| Identyfikuje określone zapytanie w ramach sesji wyszukiwania                                                   	|
+|                 	|   **uilist**   	|               _bool_              	| Zwraca listę unikalnych identyfikatorów (UIDs)                                                                 	|
+|                 	|   **retmax**   	|               _int_               	| Maksymalna liczba pobranych rekordów (np. 110000)                                                              	|
+|                 	|  **retstart**  	|               _int_               	| Określa indeks pierwszego rekordu do pobrania z wyników wyszukiwania                                           	|
+|                 	| **usehistory** 	|               _bool_              	| Użycie serwera historii Entrez.                                                                                	|
+|                 	|    **term**    	|               _str_               	| Zapytanie do bazy (np. "viruses[orgn]")                                                                        	|
+|                 	|    **sort**    	|               _str_               	| Kolejność sortowania                                                                                           	|
+|                 	|    **field**   	|               _str_               	| Zawęża wyszukiwanie do określone pola w bazie danych takich jak: tytuł, autor                                  	|
+|                 	|   **reldate**  	|               _int_               	| Umożliwia wyszukiwanie rekordów we względnym zakresie dat np. ostatnie X dni od dnia dzisiejszego              	|
+|                 	|  **datetype**  	| _str (YYYY/MM/DD, YYYY/MM, YYYY)_ 	| Typ daty do wyszukania (np. "pdat" dla daty publikacji)                                                        	|
+|                 	|   **mindate**  	| _str (YYYY/MM/DD, YYYY/MM, YYYY)_ 	| Minimalna data wyszukania                                                                                      	|
+|                 	|   **maxdate**  	| _str (YYYY/MM/DD, YYYY/MM, YYYY)_ 	| Maksymalna data wyszukania                                                                                     	|
+|                 	|   **idtype**   	|               _bool_              	| Typ identifikatora używany do pobierania danych np. PMID, Genbank Accession                                    	|
+|                 	|   **retmode**  	|   _`json, enforced by Esearcher_  	| Określa format pobranych danych np.: XML, text, JSON                                                           	|
+|                 	|   **reqsize**  	|               _int_               	| Określa ilość rekordów żądanych lub przetwarzanych                                                             	|
+|                 	|                	|                                   	|                                                                                                                	|
+
+
 
 ```python
 
@@ -77,6 +108,25 @@ analyzer = e.inquire({'db' : 'pubmed',
 
 ## ELINKER
 
+### Wspierane parametry E-Utility
+
+
+| **_Narzędzie_** 	| **_Parametr_** 	|             **_Typ_**             	|                                                                     **_Opis_**                                                                    	|
+|:---------------:	|:--------------:	|:---------------------------------:	|:-------------------------------------------------------------------------------------------------------------------------------------------------:	|
+| **Elinker**     	|                	|                                   	|                                                                                                                                                   	|
+|                 	|     **db**     	|               _str_               	| Baza danych do wyszukania (np.: "PubMed", "Protein", "Gene", "Nucleotide")                                                                        	|
+|                 	|   **dbfrom**   	|               _str_               	| Określa źródłową bazę danych która będzie używana w celu przesyłania do innej bazy danych.                                                        	|
+|                 	|     **id**     	|               _list_              	| lista ID używanych do łączenia rekordów w bazach danych Entrez                                                                                    	|
+|                 	|     **cmd**    	|               _str_               	| Określa polecenie lub operację do wykonania np.: search, fetch, summary                                                                           	|
+|                 	|  **linkname**  	|               _str_               	| Określa rodzaj łącza które zostanie ustanowione między rekordami w różnych bazach danych Entrez, umożliwiając wyszukiwanie powiązanych informacji 	|
+|                 	|    **term**    	|               _str_               	| Zapytanie do bazy (np. "viruses[orgn]")                                                                                                           	|
+|                 	|   **reldate**  	|               _int_               	| Umożliwia wyszukiwanie rekordów we względnym zakresie dat np. ostatnie X dni od dnia dzisiejszego                                                 	|
+|                 	|  **datetype**  	| _str (YYYY/MM/DD, YYYY/MM, YYYY)_ 	| Typ daty do wyszukania (np. "pdat" dla daty publikacji)                                                                                           	|
+|                 	|   **mindate**  	| _str (YYYY/MM/DD, YYYY/MM, YYYY)_ 	| Minimalna data wyszukania                                                                                                                         	|
+|                 	|   **maxdate**  	| _str (YYYY/MM/DD, YYYY/MM, YYYY)_ 	| Maksymalna data wyszukania                                                                                                                        	|
+|                 	|   **retmode**  	|   _`json, enforced by Esearcher_  	| Określa format pobranych danych np.: XML, text, JSON                                                                                              	|
+|                 	|    **link**    	|               _bool_              	| Umożliwia wykonywanie zapytań między różnymi bazami danych                                                                                        	|
+
 ```python
 
 import entrezpy.elink.elinker
@@ -93,7 +143,21 @@ analyzer = e.inquire({'dbfrom': 'protein',
 
 ```
 
-## ESUMMARYER
+## ESUMMARIZER
+
+### Wspierane parametry E-Utility
+
+
+| **_Narzędzie_** 	| **_Parametr_** 	|            **_Typ_**           	|                                                  **_Opis_**                                                  	|
+|:---------------:	|:--------------:	|:------------------------------:	|:------------------------------------------------------------------------------------------------------------:	|
+| **Esummarizer**     	|                	|                                	|                                                                                                              	|
+|                 	|     **db**     	|              _str_             	| Baza danych do wyszukania (np.: "PubMed", "Protein", "Gene", "Nucleotide")                                   	|
+|                 	|     **id**     	|             _list_             	| lista ID używanych do łączenia rekordów w bazach danych Entrez                                               	|
+|                 	|   **WebEnv**   	|              _str_             	| połączenie sesji wyszukiwania, umożliwiając żądaniom na dostęp do historii wyszukiwania czy wyników          	|
+|                 	|  **retstart**  	|              _int_             	| Określa indeks pierwszego rekordu który ma zostać pobrany umożliwiając pobieranie wyników małymi fragmentami 	|
+|                 	|   **retmax**   	|              _int_             	| Określa maksymalną liczbę rekordów pobranych w pojedyńczym żądaniu                                           	|
+|                 	|   **retmode**  	| _`json, enforced by Esearcher_ 	| Określa format pobranych danych np.: XML, text, JSON                                                         	|
+
 
 ```python
 
@@ -113,11 +177,19 @@ print(analyzer.get_result().summaries)
 
 ```
 
-## ESPELLER
-
-## EUTILITIES
 
 ## EPOST
+
+### Wspierane parametry E-Utility
+
+
+| **_Narzędzie_** 	| **_Parametr_** 	| **_Typ_** 	|                                              **_Opis_**                                             	|
+|:---------------:	|:--------------:	|:---------:	|:---------------------------------------------------------------------------------------------------:	|
+| **Eposter**     	|                	|           	|                                                                                                     	|
+|                 	|     **db**     	|   _str_   	| Baza danych do wyszukania (np.: "PubMed", "Protein", "Gene", "Nucleotide")                          	|
+|                 	|     **id**     	|   _list_  	| lista ID używanych do łączenia rekordów w bazach danych Entrez                                      	|
+|                 	|   **WebEnv**   	|   _str_   	| połączenie sesji wyszukiwania, umożliwiając żądaniom na dostęp do historii wyszukiwania czy wyników 	|
+
 
 ```python
 
