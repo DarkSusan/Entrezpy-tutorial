@@ -1,6 +1,30 @@
 # ENTREZPY TUTORIAL
 
-### Parametry funkcji:
+### Czym jest Entrezpy?
+
+Entrezpy to dedykowana biblioteka w Pythonie do interakcji z bazami danych NCBI poprzez E-Utilities.
+
+### Instalacja
+
+```bash
+pip install entrezpy
+```
+
+### INQUIRE()
+
+Służy do wysłania zapytania do bazy danych Entrez i pobrania wyników wyszukiwania na podstawie określonych parametrów. Pozwala użytkownikom wyszukiwać rekordy spełniające określone kryteria w bazie danych i uzyskiwać odpowiednie informacje do dalszego przetwarzania lub analizy.
+Wykorzystuje dane pobrane za pomocą funkcji zawartej w paczce wykorzystującej E-Utility.
+
+```Python
+
+data.inquire({'db' : 'pubmed',
+              'id' : [17284678, 9997],
+              'retmode' : 'text',
+              'rettype' : 'abstract'})
+
+```
+
+### Parametry funkcji wykorzystujących E-Utility:
 
 **tool** - Nazwa narzędzia, do którego należy żądanie
 
@@ -14,8 +38,6 @@
 
 **qid** - Unikalny identyfikator zapytania Esearch. Zostanie wygenerowany, jeśli nie zostanie podany.
 
-## INQUIRE() - przyjmuje słownik jako parametr
-                               	|
 ## ESEARCH
 
 ### Wspierane parametry E-Utility
