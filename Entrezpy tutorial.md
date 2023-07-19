@@ -21,7 +21,7 @@ Wykorzystuje dane pobrane za pomocą funkcji zawartej w paczce wykorzystującej 
 
 **Zwraca:** analyzer
 
-**Typ zwracany:** entrezpy.base.analyzer.EutilsAnalyzer
+**Zwracany typ:** entrezpy.base.analyzer.EutilsAnalyzer
 
 ```Python
 
