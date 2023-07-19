@@ -10,10 +10,18 @@ Entrezpy to dedykowana biblioteka w Pythonie do interakcji z bazami danych NCBI 
 pip install entrezpy
 ```
 
-## INQUIRE()
+## INQUIRE(parameter, analyzer)
 
 Służy do wysłania zapytania do bazy danych Entrez i pobrania wyników wyszukiwania na podstawie określonych parametrów. Pozwala użytkownikom wyszukiwać rekordy spełniające określone kryteria w bazie danych i uzyskiwać odpowiednie informacje do dalszego przetwarzania lub analizy.
 Wykorzystuje dane pobrane za pomocą funkcji zawartej w paczce wykorzystującej E-Utility.
+
+#### **_Parametry:_**
+- **parameter (dict)** - Parametry narzędzi E-Utilities
+- **analyzer (entrezpy.base.analyzer.EutilsAnalyzer)**
+
+**Zwraca:** analyzer
+
+**Typ zwracany:** entrezpy.base.analyzer.EutilsAnalyzer
 
 ```Python
 
