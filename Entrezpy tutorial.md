@@ -1,16 +1,16 @@
 # ENTREZPY TUTORIAL
 
-### Czym jest Entrezpy?
+## Czym jest Entrezpy?
 
 Entrezpy to dedykowana biblioteka w Pythonie do interakcji z bazami danych NCBI poprzez E-Utilities.
 
-### Instalacja
+## Instalacja
 
 ```bash
 pip install entrezpy
 ```
 
-### INQUIRE()
+## INQUIRE()
 
 Służy do wysłania zapytania do bazy danych Entrez i pobrania wyników wyszukiwania na podstawie określonych parametrów. Pozwala użytkownikom wyszukiwać rekordy spełniające określone kryteria w bazie danych i uzyskiwać odpowiednie informacje do dalszego przetwarzania lub analizy.
 Wykorzystuje dane pobrane za pomocą funkcji zawartej w paczce wykorzystującej E-Utility.
@@ -38,7 +38,9 @@ data.inquire({'db' : 'pubmed',
 
 **qid** - Unikalny identyfikator zapytania Esearch. Zostanie wygenerowany, jeśli nie zostanie podany.
 
-## ESEARCH
+## ESEARCHER
+
+**entrezpy.esearch.esearcher.Esearcher** implementuje narzędzie E-utility ESearch. Esearcher wykonuje zapytania, zwracając identyfikatory UID dla danych w żądanej bazie danych Entrez lub odwołania WebEnv/QueryKey z serwera Historii Entrez.
 
 ### Wspierane parametry E-Utility
 
@@ -82,6 +84,8 @@ print(a.get_result().uids)
 ```
 
 ## EFETCHER
+
+**entrezpy.efetch.efetcher.Efetcher** implementuje narzędzie E-utility EFetch. Efetcher wykonuje zapytania, zwracając dane z serwera Historii Entrez.
 
 ### Wspierane parametry E-Utility
 
@@ -130,6 +134,13 @@ analyzer = e.inquire({'db' : 'pubmed',
 
 ## ELINKER
 
+**entrezpy.elink.elinker.Elinker** implementuje narzędzie E-utility ELink. Elinker wykonuje zapytania, które mogą łączyć wyniki:
+- między różnymi bazami danych w ramach Entrez,
+- wcześniejsze zapytania na serwerze Historii Entrez,
+- do odnośników poza NCBI Entrez, np. do artykułów naukowych.
+
+Elinker zwraca identyfikatory UID dla danych w żądanej bazie danych Entrez lub odwołanie WebEnv/QueryKey z serwera Historii Entrez.
+
 ### Wspierane parametry E-Utility
 
 
@@ -167,6 +178,8 @@ analyzer = e.inquire({'dbfrom': 'protein',
 
 ## ESUMMARIZER
 
+**entrezpy.esummary.esummarizer.Esummarizer** implementuje narzędzie E-utility ESummary. Esummarizer pobiera podsumowania dokumentów dla identyfikatorów UID w żądanej bazie danych. Podsumowania mogą zawierać streszczenia, szczegóły eksperymentalne, itp.
+
 ### Wspierane parametry E-Utility
 
 
@@ -200,7 +213,9 @@ print(analyzer.get_result().summaries)
 ```
 
 
-## EPOST
+## EPOSTER
+
+**entrezpy.epost.eposter.Eposter** implementuje narzędzie E-utility EPost. Eposter wykonuje zapytania, które umieszczają identyfikatory UID na serwerze Historii Entrez i zwracają odpowiadające mu WebEnv i query_key. Jeśli istniejący WebEnv zostanie przekazany jako parametr, dodane zostaną umieszczone UIDs do tego WebEnv poprzez zwiększenie jego query_key.
 
 ### Wspierane parametry E-Utility
 
