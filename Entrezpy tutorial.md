@@ -75,6 +75,33 @@ data.inquire({'db' : 'pubmed',
 |                 	|   **reqsize**  	|               _int_               	| Określa ilość rekordów żądanych lub przetwarzanych                                                             	|
 |                 	|                	|                                   	|                                                                                                                	|
 
+### Wspierane funkcje
+
+```
+
+analyzer.adjust_followup(
+analyzer.isEmpty()
+analyzer.analyze_error(
+analyzer.isErrorResponse(
+analyzer.analyze_result(
+analyzer.isSuccess()
+analyzer.check_error_json(
+analyzer.known_fmts
+analyzer.check_error_xml(
+analyzer.logger
+analyzer.convert_response(
+analyzer.parse(
+analyzer.follow_up()
+analyzer.query_size()
+analyzer.get_result()
+analyzer.reference()
+analyzer.hasErrorResponse
+analyzer.result
+analyzer.init_result(
+analyzer.size()
+
+```
+
 
 ```python
 
@@ -82,12 +109,12 @@ import entrezpy.esearch.esearcher
 
 e = entrezpy.esearch.esearcher.Esearcher(tool = "esearcher", email = "zuzwaw5@st.amu.edu.pl")
 
-a = e.inquire({'db': 'nucleotide',
+analyzer = e.inquire({'db': 'nucleotide',
                 'term':'viruses[orgn]',
                 'retmax': 1000,
                 'rettype': 'uilist'})
 
-print(a.get_result().uids)
+print(analyzer.get_result().uids)
 
 ```
 
@@ -125,6 +152,29 @@ print(a.get_result().uids)
 |                 	|   **reqsize**  	|               _int_               	| Określa ilość rekordów żądanych lub przetwarzanych                                                             	|
 |                 	|                	|                                   	|                                                                                                                	|
 
+### Wspierane funkcje
+
+```
+
+analyzer.analyze_error(
+analyzer.isEmpty()
+analyzer.analyze_result(
+analyzer.isErrorResponse(
+analyzer.check_error_json(
+analyzer.isSuccess()
+analyzer.check_error_xml(
+analyzer.known_fmts
+analyzer.convert_response(
+analyzer.logger
+analyzer.follow_up()
+analyzer.norm_response(
+analyzer.get_result()
+analyzer.parse(
+analyzer.hasErrorResponse
+analyzer.result
+analyzer.init_result(
+
+```
 
 
 ```python
@@ -235,6 +285,34 @@ Elinker zwraca identyfikatory UID dla danych w żądanej bazie danych Entrez lub
 |                 	|   **retmode**  	|   _`json, enforced by Esearcher_  	| Określa format pobranych danych np.: XML, text, JSON                                                                                              	|
 |                 	|    **link**    	|               _bool_              	| Umożliwia wykonywanie zapytań między różnymi bazami danych                                                                                        	|
 
+### Wspierane funkcje
+
+```
+
+analyzer.analyze_error()
+analyzer.analyze_linklist()
+analyzer.analyze_links()
+analyzer.analyze_result()
+analyzer.check_error_json()
+analyzer.check_error_xml()
+analyzer.convert_response()
+analyzer.follow_up()
+analyzer.get_linkset_unit()
+analyzer.get_result()
+analyzer.hasErrorResponse()
+analyzer.init_result()
+analyzer.isEmpty()
+analyzer.isErrorResponse()
+analyzer.isLinkList()
+analyzer.isSuccess()
+analyzer.known_fmts()
+analyzer.logger()
+analyzer.parse()
+analyzer.parse_llinkslib()
+analyzer.result()
+
+```
+
 ```python
 
 import entrezpy.elink.elinker
@@ -248,7 +326,13 @@ e = entrezpy.elink.elinker.Elinker(tool = "elinker",
 analyzer = e.inquire({'dbfrom': 'protein',
                      'db': 'gene',
                      'id': [15718680, 157427902]})
+print(analyzer.get_result().dump())
+```
 
+### Output
+
+```
+{'function': 'elink', 'size': 3, 'linksets': [{'uid': 15718680, 'dbfrom': 'protein', 'category': 'linked', 'size': 1, 'linkunits': [{'uid': 3702, 'dbto': 'gene', 'linkname': 'protein_gene'}]}, {'uid': 15718680, 'dbfrom': 'protein', 'category': 'linked', 'size': 1, 'linkunits': [{'uid': 3702, 'dbto': 'gene', 'linkname': 'protein_gene'}]}, {'uid': 157427902, 'dbfrom': 'protein', 'category': 'linked', 'size': 1, 'linkunits': [{'uid': 522311, 'dbto': 'gene', 'linkname': 'protein_gene'}]}]}
 ```
 
 ## ESUMMARIZER
@@ -267,6 +351,29 @@ analyzer = e.inquire({'dbfrom': 'protein',
 |                 	|  **retstart**  	|              _int_             	| Określa indeks pierwszego rekordu który ma zostać pobrany umożliwiając pobieranie wyników małymi fragmentami 	|
 |                 	|   **retmax**   	|              _int_             	| Określa maksymalną liczbę rekordów pobranych w pojedyńczym żądaniu                                           	|
 |                 	|   **retmode**  	| _`json, enforced by Esearcher_ 	| Określa format pobranych danych np.: XML, text, JSON                                                         	|
+
+### Wspierane funkcje
+
+```
+
+analyzer.analyze_error(
+analyzer.init_result(
+analyzer.analyze_result(
+analyzer.isEmpty()
+analyzer.check_error_json(
+analyzer.isErrorResponse(
+analyzer.check_error_xml(
+analyzer.isSuccess()
+analyzer.convert_response(
+analyzer.known_fmts
+analyzer.follow_up()
+analyzer.logger
+analyzer.get_result()
+analyzer.parse(
+analyzer.hasErrorResponse
+analyzer.result
+
+```
 
 
 ```python
@@ -309,6 +416,29 @@ print(analyzer.get_result().summaries)
 |                 	|     **id**     	|   _list_  	| lista ID używanych do łączenia rekordów w bazach danych Entrez                                      	|
 |                 	|   **WebEnv**   	|   _str_   	| połączenie sesji wyszukiwania, umożliwiając żądaniom na dostęp do historii wyszukiwania czy wyników 	|
 
+### Wspierane funkcje
+
+```
+
+analyzer.analyze_error(
+analyzer.init_result(
+analyzer.analyze_result(
+analyzer.isEmpty()
+analyzer.check_error_json(
+analyzer.isErrorResponse(
+analyzer.check_error_xml(
+analyzer.isSuccess()
+analyzer.convert_response(
+analyzer.known_fmts
+analyzer.follow_up()
+analyzer.logger
+analyzer.get_result()
+analyzer.parse(
+analyzer.hasErrorResponse
+analyzer.result
+
+
+```
 
 ```python
 
